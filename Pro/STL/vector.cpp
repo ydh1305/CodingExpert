@@ -57,6 +57,12 @@ class _vector {
         bool empty() {
             return _size == 0;
         }
+        T& front() {
+            return arr[0];
+        }
+        T& back() {
+            return arr[_size - 1];
+        }
         T& operator [](int idx){
             return arr[idx];
         }
@@ -75,12 +81,20 @@ struct _pair {
 
 int main(void){
     _vector<_pair<int, string>> v;
+    _vector<int> d;
     cout << v.empty() << "\n";
     v.push_back(_pair<int, string>(90, "YDH"));
     v.push_back(_pair<int, string>(80, "AAA"));
     v.push_back(_pair<int, string>(70, "BBB"));
+    d.push_back(70);
+    d.push_back(60);
+    d.push_back(50);
+    d.push_back(40);
     for(int i = 0; i < v.size(); i++)
         cout << v[i].second << ' ' << v.empty() << ' ';
+    int a = d.front();
+    int b = d.back();
+    cout << a << ' ' << b << "\n";
 
     return 0;
 }
