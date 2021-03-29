@@ -1,0 +1,84 @@
+defscrollback 50000 
+
+defutf8 on
+defkanji utf-8
+encoding utf-8 utf-8
+defencoding utf-8
+
+bindkey -k k1 prev
+bindkey -k k2 next
+bindkey -k k3 screen
+#bindkey -k k4 focus
+#bindkey -k k5 title
+
+#bindkey -k k6 select 0
+#bindkey -k k7 select 1
+#bindkey -k k8 select 2
+#bindkey -k k9 select 3
+#bindkey -k k; select 4
+#bindkey -k F1 select 5
+#bindkey -k F2 select 6
+
+termcap kterm hs@
+terminfo kterm hs@
+vbell off
+bell_msg "Bell in window %"
+bind w windowlist -b
+#hardstatus alwayslastline "%w"
+#hardstatus alwayslastline "%{= wk} %-w%{=bu dr}%n %t%{-}%+w %= %{=b wb}%y/%m/%d %{=b wb}%c"
+#hardstatus alwayslastline "%{= bw}[%02c]%{ky} %`%-w%{b rw}%n %t%{-}%+w"
+
+#hardstatus alwayslastline "%{= wb}[%y/%m/%d %c%A:64bit]%{ky} %-w%{b rw}%n %t%{-}%+w"
+
+# custums settings
+hardstatus alwayslastline
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %y/%m/%d %{W}%c%A %{g}]'
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+#hardstatus string "%{= KW} %H [%`] %{= Kw}|%{-} %-Lw%{= bW}%n%f %t%{-}%+Lw %=%C%a %Y-%M-%d"
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+
+# nice 7 - scheme black
+#hardstatus alwayslastline "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%< %=%D %M %d %c"
+#hardstatus string '%{= kK}%-Lw%{= KW}%50>%n%f %t%{= kK}%+Lw%< %{=kG}%-= %d%M %c:%s%{-}'
+hardstatus string '%{= kK}[%H] %-Lw%{= KW}%50>%n%f %t%{= kK}%+Lw%< %{=kG}%-= %y/%M/%d(%D) %c:%s%{-}'
+
+shell -$SHELL
+startup_message off
+autodetach on
+
+logfile "$HOME/.screen/screen-%Y%m%d-%n.log"
+log on
+deflog on
+
+# Make Ctrl+left, Ctrl+right works like Ctrl+a+tab
+bindkey ^[[1;5C next
+bindkey ^[[1;5D prev
+ 
+# Also make Ctrl+j, Ctrl+k works like Ctrl+a+tab
+bindkey ^k next
+bindkey ^j prev
+
+# Allow bold colors - necessary for some reason
+#attrcolor b ".I"
+
+# Tell screen how to set colors. AB = background, AF=foreground
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+# tell screen that xterm can switch to dark background and has function
+# keys.
+termcapinfo xterm 'VR=\E[?5h:VN=\E[?5l'
+termcapinfo xterm 'k1=\E[11~:k2=\E[12~:k3=\E[13~:k4=\E[14~'
+termcapinfo xterm 'kh=\EOH:kI=\E[2~:kD=\E[3~:kH=\EOF:kP=\E[5~:kN=\E[6~'
+
+# Erase background with current bg color
+defbce "on"
+
+# Enable 256 color term
+term xterm-256color
+
+# Enable mouse scroll
+#termcapinfo xterm* ti@:te@
+#mousetrack on
+
+#defscrollback 10000
+#termcapinfo xterm be
