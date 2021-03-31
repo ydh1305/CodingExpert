@@ -24,7 +24,7 @@ struct Trie {
         Node[cur]->insert(str + 1);
     }
     int find(char *str) {
-        if(*str == '\0') return child;
+        if(*str == '\0') return child; // finish가 아닌 개행조건으로 child값 리턴
         int cur = *str - 'a';
         if(Node[cur] == NULL) return 0;
         return Node[cur]->find(str + 1);
