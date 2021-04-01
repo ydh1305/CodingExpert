@@ -1,6 +1,10 @@
 #include <iostream>
 using namespace std;
 
+#define NULL 0
+
+char temp[6];
+
 template <typename T>
 class _vector {
     public:
@@ -26,8 +30,7 @@ class _vector {
         void resize(int k) {
             T *temp;
             temp = new T[k];
-            for(int i = 0; i < s; i++)
-                temp[i] = arr[i];
+            for(int i = 0; i < s; i++) temp[i] = arr[i];
             delete[] arr;
             arr = temp;
             s = c = k;
@@ -48,15 +51,62 @@ class _vector {
         T* end() {
             return &arr[0] + s;
         }
-        T& back() {
-            return arr[s - 1];
-        }
         T& operator [](int idx) {
             return arr[idx];
         }
         T operator [](int idx) const {
             return arr[idx];
         }
+};
+_vector<string> v;
+
+struct Trie {
+    int child;
+    bool finish;
+    Trie *Node[63];
+
+    Trie() {
+        child = 0;
+        finish = false;
+        for(int i = 0; i < 63; i++) Node[i] = NULL;
+    }
+    void insert(char *str) {
+        child++;
+        if(*str == '\0') {
+            finish = true;
+            return;
+        }
+        int cur = *str - 'A';
+        if(Node[cur] == NULL) Node[cur] = new Trie();
+        Node[cur]->insert(str + 1);
+    }
+    void search(int idx) {
+        if(finish == true) {
+            temp[idx] = '\0';
+            v.push_back(temp);
+        }
+        for(int i = 62; i >= 0; i--) {
+            if(Node[i]) {
+                int cur = i + 'A';
+                temp[idx] = cur;
+                Node[i]->search(idx + 1);
+            }
+        }
+    }
+    void remove(char *str) {
+        child--;
+        if(*str == '\0') {
+            finish = false;
+        }
+        else {
+            int cur = *str - 'A';
+            Node[cur]->remove(str + 1);
+            if(!child) {
+                delete Node[cur];
+                Node[cur] = NULL;
+            }
+        }
+    }
 };
 
 template <typename It>
@@ -81,27 +131,25 @@ void _sort(It begin, It end, Cmp cmp) {
     _sort(ri + 1, end, cmp);
 }
 
-int comp(string a, string b) {
-    return a < b;
+int comp(string a, string b){
+    return a > b;
 }
 
 int main(void) {
     ios::sync_with_stdio(false);
     cin.tie(0); cout.tie(0);
-    _vector<string> v;
+    Trie *root = new Trie();
     int N; cin >> N;
-    string s1, s2;
+    char s1[6], s2[6];
     for(register int i = 0; i < N; i++) {
         cin >> s1 >> s2;
-        v.push_back(s1);
+        if(s2[0] == 'e') root->insert(s1); 
+        if(s2[0] == 'l') root->remove(s1); 
     }
+    root->search(0);
     _sort(v.begin(), v.end(), comp);
-    int size = v.size();
-    for(int i = 0; i < size; i++) {
-        //cout << v.back() << endl;
-        if(i + 1 < size && 
-        v.pop_back();
-    }
+    for(register int i = 0; i < v.size(); i++)
+        cout << v[i] << '\n';
 
     return 0;
 }
