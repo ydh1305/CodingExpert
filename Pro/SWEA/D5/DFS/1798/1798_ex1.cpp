@@ -21,23 +21,22 @@ public:
     ~_vector() {
         delete[] arr;
     }
-    void clear() {
-        delete[] arr;
-        s = 0;
-        c = 32;
-        arr = new T[c];
-    }
     int size() {
         return s;
     }
     void resize(int k) {
-        T *temp;
-        temp = new T[k];
+        T *temp = new T[k];
         for(int i = 0; i < s; i++)
             temp[i] = arr[i];
         delete[] arr;
         arr = temp;
         s = c = k;
+    }
+    void clear() {
+        delete[] arr;
+        s = 0;
+        c = 32;
+        arr = new T[c];
     }
     void push_back(T v) {
         if(s == c) {
@@ -60,7 +59,7 @@ public:
         s = v.s;
         c = v.c;
         arr = new T[c];
-        for (int i = 0; i < s; i++)
+        for(int i = 0; i < s; i++)
             arr[i] = v[i];
     }
 };
@@ -74,15 +73,15 @@ struct _pair {
 };
 
 #define MAX 36
-int N, M, airport, sol;
 int dist[MAX][MAX];
 bool visit[MAX];
+int N, M, airport, sol;
 _vector<int> hotel, route, sol_route;
 _vector<_pair<int, _pair<int, int>>> tour;
 
 void DFS(int cur, int day, int sat, int time, int visited) {
     if(cur == airport && day == M && visited != 0) {
-        if(sat > sol) {
+        if(sol < sat) {
             sol = sat;
             sol_route = route;
         }
@@ -93,8 +92,8 @@ void DFS(int cur, int day, int sat, int time, int visited) {
     for(int i = 0; i < tour.size(); i++) {
         int next = tour[i].first;
         int spend_time = tour[i].second.first;
-        int tsat = tour[i].second.second;
-        int move_time = dist[cur][next]; 
+        int sat_score = tour[i].second.second;
+        int move_time = dist[cur][next];
 
         if(cur == next) continue;
         if(visit[next] == true) continue;
@@ -103,12 +102,12 @@ void DFS(int cur, int day, int sat, int time, int visited) {
         tour_ok = true;
         visit[next] = true;
         route.push_back(next);
-        DFS(next, day, sat + tsat, time + spend_time + move_time, visited + 1);
+        DFS(next, day, sat + sat_score, time + spend_time + move_time, visited + 1);
         route.pop_back();
         visit[next] = false;
     }
 
-    if(tour_ok == false) {
+    if(!tour_ok) {
         if(day == M) {
             if(time + dist[cur][airport] <= 540) {
                 route.push_back(airport);
@@ -118,10 +117,10 @@ void DFS(int cur, int day, int sat, int time, int visited) {
         }
         else {
             for(int i = 0; i < hotel.size(); i++) {
-                int hotel_num = hotel[i];
-                if(time + dist[cur][hotel_num] <= 540) {
-                    route.push_back(hotel_num);
-                    DFS(hotel_num, day + 1, sat, 0, visited + 1);
+                int hotel_no = hotel[i];
+                if(time + dist[cur][hotel_no] <= 540) {
+                    route.push_back(hotel_no);
+                    DFS(hotel_no, day + 1, sat, 0, visited + 1);
                     route.pop_back();
                 }
             }
@@ -132,7 +131,6 @@ void DFS(int cur, int day, int sat, int time, int visited) {
 int main(void) {
     ios::sync_with_stdio(false);
     cin.tie(0); cout.tie(0);
-
     int T; cin >> T;
     for(int i = 1; i <= T; i++) {
         cin >> N >> M;
@@ -141,11 +139,10 @@ int main(void) {
         hotel.clear();
         tour.clear();
         route.clear();
-        for(int j = 1; j <= N; j++) visit[j] = false;
         for(int j = 1; j <= N; j++)
-            for(int k = 1; k <= N; k++) 
+            for(int k = 1; k <= N; k++)
                 dist[j][k] = dist[k][j] = 0;
-
+        for(int j = 1; j <= N; j++) visit[j] = false;
         for(int j = 1; j <= N - 1; j++) {
             for(int k = j + 1; k <= N; k++) {
                 int x; cin >> x;
@@ -155,11 +152,11 @@ int main(void) {
         }
         for(int j = 1; j <= N; j++) {
             char ch; cin >> ch;
-            if(ch == 'A') airport = j; 
+            if(ch == 'A') airport = j;
             else if(ch == 'H') hotel.push_back(j);
             else {
-                int t, s; cin >> t >> s;
-                tour.push_back({j, {t, s}});
+                int a, b; cin >> a >> b;
+                tour.push_back({j, {a, b}});
             }
         }
         DFS(airport, 1, 0, 0, 0);
@@ -169,7 +166,9 @@ int main(void) {
                 cout << sol_route[j] << ' ';
             cout << '\n';
         }
-        else cout << '\n';
+        else
+            cout << '\n';
     }
+
     return 0;
 }
