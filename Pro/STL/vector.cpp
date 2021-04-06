@@ -69,6 +69,14 @@ class _vector {
         T operator [](int idx)const {
             return arr[idx];
         }
+        void operator =(const _vector<T> &v) {
+            c = v.c;
+            s = v.s;
+            delete[] arr;
+            arr = new T[c];
+            for (int i = 0; i < s; i++)
+                arr[i] = v[i];
+        }
 };
 
 template <typename A, typename B>
