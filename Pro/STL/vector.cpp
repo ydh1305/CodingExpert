@@ -4,69 +4,69 @@ using namespace std;
 template <typename T>
 class _vector {
     public:
-        int _size;
-        int capacity;
+        int s;
+        int c;
         T *arr;
         _vector() {
-            _size = 0;
-            capacity = 32;
-            arr = new T[capacity];
+            s = 0;
+            c = 32;
+            arr = new T[c];
         }
         _vector(int k) {
-            _size = k;
-            capacity = k;
-            arr = new T[capacity];
+            s = k;
+            c = k;
+            arr = new T[c];
         }
         ~_vector() {
             delete[] arr;
         }
         void clear() {
             delete[] arr;
-            _size = 0;
-            capacity = 32;
-            arr = new T[capacity];
+            s = 0;
+            c = 32;
+            arr = new T[c];
         }
         void resize(int k) {
             T *temp;
             temp = new T[k];
-            for(int i = 0; i < _size; i++)
+            for(int i = 0; i < s; i++)
                 temp[i] = arr[i];
             delete[] arr;
             arr = temp;
-            _size = capacity = k;
+            s = c = k;
         }
         int size() const {
-            return _size;
+            return s;
         }
         T* begin() const {
             return &arr[0];
         }
         T* end() const {
-            return &arr[0] + _size;
+            return &arr[0] + s;
         }
         void push_back(T val) {
-            if(_size == capacity) {
-                resize(_size * 2);
-                _size /= 2;
+            if(s == c) {
+                resize(s * 2);
+                s /= 2;
             }
-            arr[_size++] = val;
+            arr[s++] = val;
         }
         void pop_back() {
-            _size--;
+            s--;
         }
         bool empty() {
-            return _size == 0;
+            return s == 0;
         }
         T& front() {
             return arr[0];
         }
         T& back() {
-            return arr[_size - 1];
+            return arr[s - 1];
         }
         T& operator [](int idx){
             return arr[idx];
         }
-        T operator [](int idx)const {
+        T operator [](int idx) const {
             return arr[idx];
         }
         void operator =(const _vector<T> &v) {
