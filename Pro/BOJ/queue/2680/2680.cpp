@@ -131,12 +131,10 @@ struct _pair {
 #define TERNIMATION 0
 
 char d2c[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:";
-
 _vector<int> v;
 
 void convert_to_binary(_queue<int> &q, char a, char b) {
     int x, y;
-    v.clear();
     if(a >= 'A') x = a - 'A' + 10;
     else x = a - '0';
     for (int i = 0; i < 4; i++) {
@@ -292,7 +290,6 @@ int main(void) {
                         }
                         sol.push_back(d2c[val]);
                     }
-                    
                 }
             }
             else {
@@ -306,4 +303,4 @@ int main(void) {
         cout << '\n';
     }
     return 0;
-}
+}   
