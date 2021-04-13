@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "iostream": "cpp"
-    }
+        "iostream": "cpp",
+        "typeinfo": "cpp",
+        "ostream": "cpp",
+        "ratio": "cpp"
+    },
+    "editor.fontFamily": "Consolas, 'Courier New', monospace, Cascadia Code PL"
 }
