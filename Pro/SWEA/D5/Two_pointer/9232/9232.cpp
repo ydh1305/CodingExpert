@@ -23,7 +23,7 @@ int main(void) {
             if(e <= 0) continue;
             if(s < Q) e--;
         }
-        cout << '#' << i << ' ' << e << '\n';
+        printf("#%d %d\n", i, e);
     }
     return 0;
 }
