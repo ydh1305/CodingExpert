@@ -10,7 +10,7 @@ int main(void) {
     int T; cin >> T;
     for(int i = 1; i <= T; i++) {
         int N; cin >> N;
-        memset(visit, 0, sizeof)
+        memset(visit, 0, sizeof(visit));
         int sol = 0;
         for(register int j = 1; j <= N; j++) {
             int x; cin >> x;
