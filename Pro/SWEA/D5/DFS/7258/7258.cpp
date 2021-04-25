@@ -65,7 +65,7 @@ int main(void) {
     for(int i = 1; i <= T; i++) {
         cin >> N >> M;
         memset(visit, false, sizeof(visit));
-        for(int j = 0; j < N; j++)
+        for(register int j = 0; j < N; j++)
             cin >> arr[j];
         cout << '#' << i << ' ';
         if(DFS(0, 0, 0, RIGHT)) cout << "YES" << '\n';
