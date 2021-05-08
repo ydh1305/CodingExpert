@@ -2,52 +2,48 @@
 using namespace std;
 
 int N, O, M, W, sol, zero, idx;
-int IN[1000], IO[4], L[1000];
-bool CN[10], CO[5];
+int A[1000], B[4], L[1000];
+bool cA[10], cB[5];
 
-int check(void) {
-    int d = W % 10;
+bool check(void) {
     int cnt = 0;
-    if (CN[d]) ++cnt;
-    else return 0;
-    if (W >= 10) {
-        d = (W % 100) / 10;
-        if (CN[d]) ++cnt;
-        else return 0;
+    if(cA[W % 10]) cnt++;
+    else return false;
+    if(W >= 10) {
+        if(cA[((W % 100) / 10)]) cnt++;
+        else return false;
     }
- 
-    if (W >= 100) {
-        d = W / 100;
-        if (CN[d]) ++cnt;
-        else return 0;
+    if(W >= 100) {
+        if(cA[W / 100]) cnt++;
+        else return false;
     }
     sol = cnt;
-    return 1;
+    return true;
 }
 
-int calc(int a, int b, int o) {
+int calc(int a, int o, int b) {
     if(o == 1) return a + b;
     if(o == 2) return a - b;
     if(o == 3) return a * b;
     if(o == 4) return a / b;
 }
 
-void DFS(int n, int m) {
-    if(m + 1 > M || m + 1 >= sol) return;
+void DFS(int n, int len) {
+    if(len + 1 > M || len + 1 >= sol) return;
     if(n == W) {
-        sol = m + 1;
+        sol = len + 1;
         return;
     }
-    for(int i =  zero; i < idx; i++) {
-        int cnt = m + 1 + L[IN[i]];
-        if(cnt + 1 > M || cnt + 1 >= sol) continue;
+    for(int i = zero; i < idx; i++) {
+        int nlen = len + 1 + L[A[i]];
+        if(nlen + 1 > M || nlen + 1 >= sol) continue;
         for(int j = 0; j < O; j++) {
-            int num = calc(n, IN[i], IO[j]);
-            if(num != W && (cnt + 3 > M || cnt + 3 >= sol)) continue;
+            int num = calc(n, B[j], A[i]);
             if(num <= 0 || num >= 1000) continue;
-            if(L[num] > cnt) {
-                L[num] = cnt;
-                DFS(num, cnt);
+            if(num != W && (nlen + 3 > M || nlen + 3 >= sol)) continue;
+            if(L[num] > nlen) {
+                L[num] = nlen;
+                DFS(num, nlen);
             }
         }
     }
@@ -56,39 +52,39 @@ void DFS(int n, int m) {
 void solve(void) {
     if(check()) return;
     if(W == 0) {
-        if(CO[2]) {
+        if(cB[2]) {
             sol = 4;
             return;
         }
-        if(CO[4]) {
+        if(cB[4]) {
             sol = 5;
             return;
         }
     }
     if(zero != -1) {
-        swap(IN[zero], IN[0]);
+        swap(A[0], A[zero]);
         zero = 1;
     }
     else zero = 0;
     idx = N;
     for(int i = zero; i < N; i++) {
         for(int j = 0; j < N; j++) {
-            IN[idx] = IN[i] * 10 + IN[j];
-            L[IN[idx]] = 2;
+            A[idx] = A[i] * 10 + A[j];
+            L[A[idx]] = 2;
             idx++;
         }
     }
     for(int i = zero; i < N; i++) {
         for(int j = 0; j < N; j++) {
             for(int k = 0; k < N; k++) {
-                IN[idx] = IN[i] * 100 + IN[j] * 10 + IN[k];
-                L[IN[idx]] = 3;
+                A[idx] = A[i] * 100 + A[j] * 10 + A[k];
+                L[A[idx]] = 3;
                 idx++;
             }
         }
     }
     for(int i = 0; i < idx; i++)
-        DFS(IN[i], L[IN[i]]);
+        DFS(A[i], L[A[i]]);
     if(sol == 999) sol = -1;
 }
 
@@ -97,23 +93,23 @@ int main(void) {
     cin.tie(0); cout.tie(0);
     int T; cin >> T;
     for(int i = 1; i <= T; i++) {
+        cin >> N >> O >> M;
         for(int j = 0; j < 1000; j++)
             L[j] = 999;
-        for(int j = 1; j <= 4; j++)
-            CO[j] = 0;
         for(int j = 0; j < 10; j++)
-            CN[j] = 0;
+            cA[j] = false;
+        for(int j = 1; j <= 4; j++)
+            cB[j] = false;
         zero = -1;
-        cin >> N >> O >> M;
         for(int j = 0; j < N; j++) {
-            cin >> IN[j];
-            CN[IN[j]] = true;
-            L[IN[j]] = 1;
-            if(IN[j] == 0) zero = j;
+            cin >> A[j];
+            cA[A[j]] = true;
+            L[A[j]] = 1;
+            if(!A[j]) zero = j;
         }
         for(int j = 0; j < O; j++) {
-            cin >> IO[j];
-            CO[IO[j]] = true;
+            cin >> B[j];
+            cB[B[j]] = true;
         }
         cin >> W;
         sol = 999;
