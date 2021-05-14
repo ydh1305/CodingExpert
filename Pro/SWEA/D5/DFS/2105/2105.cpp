@@ -23,7 +23,7 @@ void DFS(int r, int c, int h, int w, int dir, int cnt) {
     if(visit[map[r][c]]) return;
     visit[map[r][c]] = true;
     if(dir == 0) {
-        if(cnt < h)
+        if(cnt < h) 
             DFS(r + d[dir][0], c + d[dir][1], h, w, dir, cnt + 1);
         else
             DFS(r + d[dir + 1][0], c + d[dir + 1][1], h, w, dir + 1, 1);
@@ -62,7 +62,7 @@ int main(void) {
                     if(N - c - h < max_w) max_w = N - c - h;
                     if(N - r < max_w) max_w = N - r;
                     for(int w = 1; w <= max_w; w++)
-                        DFS(r, c, h, w, 0, 0);   
+                        DFS(r, c, h, w, 0, 0);
                 }
             }
         }

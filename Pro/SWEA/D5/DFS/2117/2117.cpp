@@ -17,7 +17,7 @@ bool check(int h, int w, int m, int k) {
 
 int DFS(int h, int w) {
     int sum = 0;
-    for(int k = 1; k <= 21; k++) {
+    for(int k = 1; k <= N + 1; k++) {
         int num = 0;
         for(int i = 0; i < nH; i++) {
             if(!check(h, w, i, k - 1)) continue;
