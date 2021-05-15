@@ -55,7 +55,7 @@ int main(void) {
                 }
             }
         }
-        int sol = 0;
+        int sol = 0;    
         pair<int, int> n;
         for(int i = 0; i <= 4000; i++) {
             if(v[i].empty()) continue;

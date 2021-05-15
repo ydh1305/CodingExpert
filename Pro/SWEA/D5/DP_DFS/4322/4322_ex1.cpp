@@ -16,7 +16,7 @@ bool DFS(int n, int cpuN) {
             q[i] = CPU[i] - R[n];
     }
     unsigned char& visit = dp[n][q[0]][q[1]][q[2]][q[3]][q[4]];
-    if(visit == tn * 5+ cpuN) return false;
+    if(visit == tn * 5 + cpuN) return false;
     visit = tn * 5 + cpuN;
     for(int i = 0; i < cpuN; i++) {
         if(CPU[i] - R[n] + L[n] > 10) continue;
