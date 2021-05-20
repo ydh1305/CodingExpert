@@ -14,7 +14,7 @@ bool check(int h, int w) {
 void DFS(int h, int w, int cnt) {
     if(h >= H - 1) {
         h = 0;
-        w++;
+        w = w + 1;
     }
     if(w == W - 1) {
         if(sol < cnt) sol = cnt;
@@ -22,7 +22,7 @@ void DFS(int h, int w, int cnt) {
     }
     if(h == 0) {
         int bit = 0;
-        for(int i = 0; i < H; i++)
+        for(int i = 0; i < H; ++i)
             bit = bit | (map[i][w] << i);
         if(dp[bit][w] >= cnt) return;
         dp[bit][w] = cnt;
