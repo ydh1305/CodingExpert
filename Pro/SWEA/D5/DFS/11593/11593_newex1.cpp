@@ -19,9 +19,7 @@ void DFS(int n) {
             arr[pos[i]]--;
             long long bot = 1;
             for(int j = 0; j < cnt; j++) {
-                if(arr[pos[j]]) {
-                    bot = bot * f[arr[pos[j]]];
-                }
+                if(arr[pos[j]]) bot = bot * f[arr[pos[j]]];
             }
             long long top = f[len - (n + 1)];
             sol = sol + (top / bot);
@@ -44,7 +42,6 @@ int main(void) {
         len = strlen(S);
         cnt = 0;
         sol = 0;
-        //memset(arr, 0, sizeof(arr));
         for(int i = 0; S[i]; i++) {
             int idx = S[i] - 'A';
             if(!arr[idx]) pos[cnt++] = idx; 

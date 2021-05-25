@@ -3,7 +3,11 @@
         "iostream": "cpp",
         "typeinfo": "cpp",
         "ostream": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "chrono": "cpp",
+        "random": "cpp",
+        "limits": "cpp",
+        "valarray": "cpp"
     },
     "editor.fontFamily": "Consolas, 'Courier New', monospace, Cascadia Code PL"
 }

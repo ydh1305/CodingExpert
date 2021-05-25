@@ -22,7 +22,7 @@ int DFS(int selN, int selM, int skipM, int sel) {
     } else {
         if(selN < N)
             sol = max(sol, DFS(selN + 1, selM, skipM, 1));
-        if(selM + skipM < M)
+        if(selM + skipM < M) 
             sol = max(sol, DFS(selN, selM, skipM + 1, 1));
     }
     return sol;
