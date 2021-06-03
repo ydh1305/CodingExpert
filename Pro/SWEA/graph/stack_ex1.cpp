@@ -1,20 +1,37 @@
 #include <iostream>
-#include <vector>
-#include <cstring>
 using namespace std;
 
-#define MAX 1001
+typedef struct Node {
+    int data;
+    Node *next;
+} Node;
 
-vector<int> v[MAX];
-int dist[MAX][MAX];
-bool visit[MAX];
+struct Stack {
+    Node *head, *tail;
+};
+Stack st[1001];
+
+int dist[1001][1001];
+bool visit[1001];
 long long sol;
 
+void push(int a, int b) {
+    Node *New = new Node;
+    New->data = b;
+    New->next = NULL;
+    if(st[a].head == NULL && st[a].tail == NULL) {
+        st[a].head = st[a].tail = New;
+    } else {
+        st[a].tail->next = New;
+        st[a].tail = New;
+    }
+}
+
 void DFS(int s, int cur, long long len) {
-    int size = v[cur].size();
+    Node *Cur = NULL;
     visit[cur] = true;
-    for(int i = 0; i < size; ++i) {
-        int e = v[cur][i];
+    for(Cur = st[cur].head; Cur != NULL; Cur = Cur->next) {
+        int e = Cur->data;
         if(visit[e]) continue;
         dist[s][e] = dist[cur][e] + len;
         if(s < e) sol = sol + dist[s][e];
@@ -30,15 +47,14 @@ int main(void) {
     for(int t = 1; t <= T; ++t) {
         int N; cin >> N;
         for(int i = 1; i <= N; ++i)
-            v[i].clear();
+            st[i].head = st[i].tail = NULL;
         for(int i = 0; i < N - 1; ++i) {
             int x, y, d; cin >> x >> y >> d;
             dist[x][y] = dist[y][x] = d;
-            v[x].push_back(y); v[y].push_back(x);
+            push(x, y); push(y, x);
         }
         sol = 0;
-        for(int i = 1; i <= N; ++i)
-            DFS(i, i, 0);
+        for(int i = 1; i <= N; ++i) DFS(i, i, 0);
         cout << '#' << t << ' ' << sol << '\n';
     }
     return 0;

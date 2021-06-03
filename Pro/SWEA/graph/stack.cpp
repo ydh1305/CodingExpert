@@ -15,7 +15,7 @@ bool visit[1001];
 long long sol;
 
 void push(int n, int m) {
-    Node *New = new struct Node;
+    Node *New = new Node;
     New->data = m;
     New->next = NULL;
     if(st[n].head == NULL && st[n].tail == NULL)
@@ -34,7 +34,7 @@ void DFS(int s, int cur, long long len) {
             int e = Cur->data;
             dist[s][e] = dist[cur][e] + len;
             if(s < e) sol = sol + dist[s][e];
-            DFS(s, Cur->data, dist[s][e]);
+            DFS(s, e, dist[s][e]);
         }
     }
     visit[cur] = false;

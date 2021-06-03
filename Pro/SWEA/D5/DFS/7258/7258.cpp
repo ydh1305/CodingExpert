@@ -9,19 +9,21 @@ using namespace std;
 bool visit[MAX + 1][MAX + 1][16][4];
 char arr[MAX + 1][MAX + 1];
 int N, M;
+bool finish;
 
 int hh[4] = { -1, 1, 0, 0 };
 int ww[4] = { 0, 0, -1, 1 };
 
-bool DFS(int h, int w, int v, int d) {
+void DFS(int h, int w, int v, int d) {
     if(h == -1) h = N - 1;
     else if(h == N) h = 0;
     else if(w == -1) w = M - 1;
     else if(w == M) w = 0;
-    if(visit[h][w][v][d]) return false;
+    if(visit[h][w][v][d]) return;
     visit[h][w][v][d] = true;
     if(arr[h][w] == '@') {
-        return true;
+        finish = true;
+        return;
     }
     else if(arr[h][w] == '<') DFS(h + hh[LEFT], w + ww[LEFT], v, LEFT);
     else if(arr[h][w] == '>') DFS(h + hh[RIGHT], w + ww[RIGHT], v, RIGHT);
@@ -68,7 +70,9 @@ int main(void) {
         for(register int j = 0; j < N; j++)
             cin >> arr[j];
         cout << '#' << i << ' ';
-        if(DFS(0, 0, 0, RIGHT)) cout << "YES" << '\n';
+        finish = false;
+        DFS(0, 0, 0, RIGHT);
+        if(finish) cout << "YES" << '\n';
         else cout << "NO" << '\n';
     }
     return 0;
