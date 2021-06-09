@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 struct Tree {
@@ -28,7 +29,7 @@ int main(void) {
             tree[i].parent = tree[i].left = tree[i].right = 0;
             visit[i] = false;
         }
-        for(int i = 0; i < E; ++i) {
+        for(register int i = 0; i < E; ++i) {
             int parent, child; cin >> parent >> child;
             if(!tree[parent].left) 
                 tree[parent].left = child;
@@ -36,13 +37,19 @@ int main(void) {
                 tree[parent].right = child;
             tree[child].parent = parent;
         }
-        for(int cur = tree[X].parent; cur != NULL; cur = tree[cur].parent)
+        int cur = tree[X].parent;
+        while(true) {
             visit[cur] = true;
-        for(int cur = tree[Y].parent; cur != NULL; cur = tree[cur].parent) {
+            if(cur == 1) break;
+            cur = tree[cur].parent;
+        }
+        cur = tree[Y].parent;
+        while(true) {
             if(visit[cur]) {
-                cout << '#' << t << ' ' << cur << DFS(cur) << '\n';
+                cout << '#' << t << ' ' << cur << ' ' << DFS(cur) << '\n';
                 break;
             }
+            cur = tree[cur].parent;
         }
     }
     return 0;

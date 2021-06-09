@@ -7,7 +7,8 @@
         "chrono": "cpp",
         "random": "cpp",
         "limits": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "*.sh": "cpp"
     },
     "editor.fontFamily": "Consolas, 'Courier New', monospace, Cascadia Code PL"
 }

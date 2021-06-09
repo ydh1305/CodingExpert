@@ -8,17 +8,17 @@ int arr[101];
 long long dp[101][21];
 
 long long DFS(int n, int sum) {
-    if(n == N - 2) {
+    if(n == N - 1) {
         if(sum == arr[N - 1]) return 1;
         return 0;
     }
     long long& sol = dp[n][sum];
     if(sol != -1) return sol;
     sol = 0;
-    int num = sum + arr[n + 1];
+    int num = sum + arr[n];
     if(num <= 20)
         sol = (sol + DFS(n + 1, num)) % MOD;
-    num = sum - arr[n + 1];
+    num = sum - arr[n];
     if(num >= 0)
         sol = (sol + DFS(n + 1, num)) % MOD;
     return sol;
@@ -35,7 +35,7 @@ int main(void) {
                 dp[i][j] = -1;
         for(int i = 0; i < N; ++i)
             cin >> arr[i];
-        cout << '#' << t << ' ' << DFS(0, arr[0]) << '\n';
+        cout << '#' << t << ' ' << DFS(0, 0) << '\n';
     }
     return 0;
 }
