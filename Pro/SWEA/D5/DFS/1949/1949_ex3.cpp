@@ -25,7 +25,7 @@ int DFS(int h, int w, int cnt, int prev, bool cut) {
         if(!cut) {
             if(map[h][w] > map[H][W])
                 DFS(H, W, cnt + 1, map[H][W], cut);
-            if(map[h][w] > map[H][W] - K)
+            else if(map[h][w] > map[H][W] - K)
                 DFS(H, W, cnt + 1, map[h][w] - 1, true);
         }
         else {

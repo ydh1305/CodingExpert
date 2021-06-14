@@ -15,7 +15,7 @@ int find(int w) {
     return h;
 }
 
-int spread(int h, int w) {
+int spread(int h, int w) {    
     int cnt = 1;
     int size = map[h][w];
     map[h][w] = 0;
@@ -25,7 +25,7 @@ int spread(int h, int w) {
         for(int i = 1; i < size; ++i) {
             nh = nh + hh[d];
             nw = nw + ww[d];
-            if(nh < 0 || nw < 0 || nh >= H || nw >= W) break;
+            if(nh < 0 || nw < 0 || nh >= H || nw >= W) continue;
             if(map[nh][nw])
                 cnt = cnt + spread(nh, nw);
         }
@@ -41,9 +41,9 @@ void update(void) {
                 int tmp = map[s][w];
                 map[s][w] = 0;
                 map[e][w] = tmp;
-                s = s - 1; e = e - 1;
+                e--; s--;
             }
-            else s = s - 1;
+            else s--;
         }
     }
 }
@@ -56,9 +56,9 @@ int DFS(int n) {
     for(int w = 0; w < W; ++w) {
         int h = find(w);
         if(h == H) continue;
-        int sum = spread(h, w);
+        int ret = spread(h, w);
         update();
-        sol = max(sol, DFS(n + 1) + sum);
+        sol = max(sol, DFS(n + 1) + ret);
         memcpy(map, tmp, sizeof(tmp));
     }
     return sol;
@@ -70,15 +70,14 @@ int main(void) {
     int T; cin >> T;
     for(int t = 1; t <= T; ++t) {
         cin >> N >> W >> H;
-        int total = 0;
+        int sum = 0;
         for(int h = 0; h < H; ++h) {
             for(int w = 0; w < W; ++w) {
                 cin >> map[h][w];
-                if(map[h][w]) total = total + 1;
+                if(map[h][w]) sum = sum + 1;
             }
         }
-        cout << '#' << t << ' ' << total - DFS(0) << '\n';
-        
+        cout << '#' << t << ' ' << sum - DFS(0) << '\n';
     }
     return 0;
 }
