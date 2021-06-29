@@ -48,6 +48,5 @@ int main(void) {
     DFS(1, 0);
     for(int i = 1; i <= N; ++i)
         cout << dp[i] << ' ';
-    cout << '\n';
     return 0;
 }

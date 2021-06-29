@@ -9,7 +9,11 @@
         "limits": "cpp",
         "valarray": "cpp",
         "*.sh": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "initializer_list": "cpp",
+        "floyd_warshall": "cpp",
+        "nutrient": "cpp",
+        "stack": "cpp"
     },
     "editor.fontFamily": "Consolas, 'Courier New', monospace, Cascadia Code PL"
 }

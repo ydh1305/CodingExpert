@@ -21,7 +21,7 @@ int main(void) {
     for(int i = 1; i <= N; ++i) {
         int x; cin >> x;
         if(i == 1) continue;
-        v[x].push_back(i); 
+        v[x].push_back(i);
     }
     for(register int i = 0; i < M; ++i) {
         int a, b; cin >> a >> b;
