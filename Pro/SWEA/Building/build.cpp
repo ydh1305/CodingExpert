@@ -36,12 +36,10 @@ int find_w(int h, int w) {
 }
 
 int DFS(int h, int w) {
-    printf("[%d][%d]\n", h, w);
     int nH = find_h(h, w);
     int nW = find_w(h, w);
     int xx = min(nH, nW);
     int sum = 0;
-
     for(int Z = xx; Z >= 1; --Z) {
         sum = 0;
         memset(visit, false, sizeof(visit));
