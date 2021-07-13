@@ -7,8 +7,8 @@ struct Paper {
     int x;
     int y;
 };
-Paper P[100];
-int dp[100];
+Paper P[101];
+int dp[101];
 int N;
 
 bool comp(const struct Paper &a, const struct Paper &b) {
@@ -16,6 +16,7 @@ bool comp(const struct Paper &a, const struct Paper &b) {
 }
 
 int DFS(int n, int x, int y) {
+    if(n == N) return 0;
     int& sol = dp[n];
     if(sol != -1) return sol;
     sol = 0;

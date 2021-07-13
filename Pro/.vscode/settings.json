@@ -13,7 +13,8 @@
         "initializer_list": "cpp",
         "floyd_warshall": "cpp",
         "nutrient": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "iosfwd": "cpp"
     },
     "editor.fontFamily": "Consolas, 'Courier New', monospace, Cascadia Code PL"
 }
