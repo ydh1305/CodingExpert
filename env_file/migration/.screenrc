@@ -46,9 +46,9 @@ shell -$SHELL
 startup_message off
 autodetach on
 
-logfile "$HOME/.screen/screen-%Y%m%d-%n.log"
+logfile "$HOME/bee_build/buildlog/bee_build-%Y%m%d-%n.log"
 log on
-deflog on
+#deflog on
 
 # Make Ctrl+left, Ctrl+right works like Ctrl+a+tab
 bindkey ^[[1;5C next
@@ -59,7 +59,7 @@ bindkey ^k next
 bindkey ^j prev
 
 # Allow bold colors - necessary for some reason
-#attrcolor b ".I"
+attrcolor b ".I"
 
 # Tell screen how to set colors. AB = background, AF=foreground
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'

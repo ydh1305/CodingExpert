@@ -1,6 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/worker/Project/QCS605_Thud/apps_proc/build-webos-qcs/meta-webosose/meta-webos-qcom'
-let g:netrw_dirhist_2='/home/worker/Project/QCS605_Thud/apps_proc/build-webos-qcs/meta-webosose/meta-webos-qcom/recipes-core'
-let g:netrw_dirhist_3='/home/worker/Project/QCS605_Thud/apps_proc/build-webos-qcs/meta-webosose/meta-webos-qcom/recipes-core/images'
-let g:netrw_dirhist_4='/home/worker/bee_build'
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/worker/Project/CIP11/sources/meta-samsung-virt/meta-ivi/recipes-kernel'
+let g:netrw_dirhist_2='/home/worker/Project/CIP11/sources/meta-samsung-virt/meta-ivi/recipes-kernel/linux'
+let g:netrw_dirhist_3='/home/worker/Project/CIP11/sources/meta-samsung-virt/meta-ivi'
+let g:netrw_dirhist_4='/home/worker/Project/CIP11/sources/meta-samsung-virt/meta-ivi/recipes-core'
+let g:netrw_dirhist_5='/home/worker/Project/CIP11/sources/meta-samsung-virt/meta-ivi'
+let g:netrw_dirhist_6='/home/worker/Project/CIP11/sources/meta-samsung-virt/meta-ivi/recipes-kernel'
+let g:netrw_dirhist_7='/home/worker/Project/CIP11/sources/meta-samsung-virt/meta-ivi/recipes-kernel/linux'
+let g:netrw_dirhist_8='/home/worker/Project/CIP11/sources/linux_ivi_dts-qla/configs'

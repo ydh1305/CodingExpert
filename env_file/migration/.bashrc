@@ -122,8 +122,12 @@ alias m_factory='make factory_ramdisk -j16 2>&1 | tee build_log.txt'
 alias m_laf='make lafimage -j16 2>&1 | tee build_log.txt'
 alias m_odm='make odmimage -j16 2>&1 | tee build_log.txt'
 alias myrepo='~/./Build/reposync.sh'
+alias md5sum='~/sh/md5sum.sh'
+alias fdt='~/sh/fdtdump'
+alias mkcscope='~/sh/mkcscope.sh'
+alias crash='~/bin/crash/crash'
 
-alias grep='grep --color=auto --exclude-dir=.git --exclude=tags --exclude="cscope*" --exclude-dir=BUILD --exclude-dir=sstate-cache --exclude-dir=buildhistory --exclude=*.log --exclude-dir=downloads -rRn'
+alias wgrep='grep --color=auto --exclude-dir=.git --exclude=tags --exclude="cscope*" --exclude-dir=BUILD --exclude-dir=sstate-cache --exclude-dir=buildhistory --exclude=*.log --exclude-dir=downloads -rRn'
 #alias grep='grep --color=auto --exclude-dir=.git --exclude=tags --exclude="cscope*" -n'
 #alias grep='grep --color=auto --exclude-dir=.git --exclude=tags --exclude="cscope*" -Rn'
 

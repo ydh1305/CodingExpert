@@ -73,7 +73,10 @@ set nobackup
 set smartindent
 set incsearch
 set hlsearch
-set expandtab"
+"space to tab - noexpandtab
+set noexpandtab
+"tab to space - expandtab
+"set expandtab
 
 "set mouse=a"
 
