@@ -1,0 +1,6 @@
+Part File_Name Flash_Addr Region Download
+SBL sbl.sys 0x0 0xA0000 Y
+BOOTA boot.sys 0x300000 0x100000 Y
+BOOTB boot.sys 0x800000 0x100000 Y
+FSRO fs_ro_1.nsic 0x1000000 0x2800000 Y
+FSRW fs_rw_1.nsic 0x3800000 0x4780000 N

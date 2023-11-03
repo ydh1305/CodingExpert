@@ -1,0 +1,5 @@
+Part File_Name Flash_Addr Region
+SBL sbl.sys 0x0 0x40000
+BOOTA boot.sys 0x200000 0x100000
+FSRO fs_ro_1.nsic 0x400000 0x2800000
+FSRW fs_rw_1.nsic 0x2C00000 0x5400000
