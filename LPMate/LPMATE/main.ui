@@ -1282,78 +1282,103 @@ background-repeat: no-repeat;</string>
                       </property>
                      </widget>
                      <widget class="QWidget" name="new_page">
-                      <layout class="QVBoxLayout" name="verticalLayout_5">
+                      <layout class="QHBoxLayout" name="horizontalLayout_6">
                        <item>
-                        <layout class="QHBoxLayout" name="horizontalLayout_6">
-                         <item>
-                          <widget class="QFrame" name="frame">
-                           <property name="frameShape">
-                            <enum>QFrame::StyledPanel</enum>
-                           </property>
-                           <property name="frameShadow">
-                            <enum>QFrame::Raised</enum>
-                           </property>
-                           <layout class="QGridLayout" name="gridLayout">
-                            <item row="0" column="0">
-                             <widget class="QGraphicsView" name="graphicsView"/>
-                            </item>
-                           </layout>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QFrame" name="frame_2">
-                           <property name="frameShape">
-                            <enum>QFrame::Panel</enum>
-                           </property>
-                           <property name="frameShadow">
-                            <enum>QFrame::Sunken</enum>
-                           </property>
-                           <property name="lineWidth">
-                            <number>3</number>
-                           </property>
-                           <property name="midLineWidth">
-                            <number>3</number>
-                           </property>
-                           <layout class="QVBoxLayout" name="verticalLayout">
-                            <item>
-                             <widget class="QPushButton" name="btn_copy">
-                              <property name="minimumSize">
-                               <size>
-                                <width>100</width>
-                                <height>30</height>
-                               </size>
-                              </property>
-                              <property name="font">
-                               <font>
-                                <family>Segoe UI</family>
-                                <pointsize>10</pointsize>
-                                <italic>false</italic>
-                                <bold>false</bold>
-                               </font>
-                              </property>
-                              <property name="cursor">
-                               <cursorShape>PointingHandCursor</cursorShape>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">background-color: rgb(52, 59, 72);</string>
-                              </property>
-                              <property name="text">
-                               <string>Copy</string>
-                              </property>
-                              <property name="icon">
-                               <iconset resource="resources.qrc">
-                                <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </widget>
-                         </item>
-                        </layout>
+                        <widget class="QFrame" name="frame">
+                         <property name="frameShape">
+                          <enum>QFrame::StyledPanel</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QGridLayout" name="gridLayout">
+                          <item row="0" column="0">
+                           <widget class="QGraphicsView" name="graphicsView"/>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QFrame" name="frame_2">
+                         <property name="frameShape">
+                          <enum>QFrame::NoFrame</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Sunken</enum>
+                         </property>
+                         <property name="lineWidth">
+                          <number>3</number>
+                         </property>
+                         <property name="midLineWidth">
+                          <number>3</number>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout">
+                          <item>
+                           <widget class="QPushButton" name="btn_open">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>Segoe UI</family>
+                              <pointsize>10</pointsize>
+                              <italic>false</italic>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(52, 59, 72);</string>
+                            </property>
+                            <property name="text">
+                             <string>Open</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="btn_copy">
+                            <property name="minimumSize">
+                             <size>
+                              <width>100</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>Segoe UI</family>
+                              <pointsize>10</pointsize>
+                              <italic>false</italic>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(52, 59, 72);</string>
+                            </property>
+                            <property name="text">
+                             <string>Copy</string>
+                            </property>
+                            <property name="icon">
+                             <iconset>
+                              <normaloff>images/icons/cil-link.png</normaloff>images/icons/cil-link.png</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
                        </item>
                       </layout>
-                      <zorder>splitter_2</zorder>
-                      <zorder>frame_2</zorder>
                      </widget>
                     </widget>
                    </item>
@@ -1416,7 +1441,7 @@ background-repeat: no-repeat;</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>By: Wanderson M. Pimenta</string>
+                   <string>By: Andrew.Yoon</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -1472,7 +1497,6 @@ background-repeat: no-repeat;</string>
  </widget>
  <resources>
   <include location="resources.qrc"/>
-  <include location="../../Modern_GUI_PyDracula_PySide6_or_PyQt6/resources.qrc"/>
  </resources>
  <connections/>
 </ui>

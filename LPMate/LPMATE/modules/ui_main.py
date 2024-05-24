@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainrOfCER.ui'
+## Form generated from reading UI file 'mainvUWhEt.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.5.2
 ##
@@ -18,7 +18,6 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QFrame, QGraphicsView, QGridLayout,
     QHBoxLayout, QLabel, QMainWindow, QPushButton,
     QSizePolicy, QStackedWidget, QVBoxLayout, QWidget)
-import resources_rc
 import resources_rc
 
 class Ui_MainWindow(object):
@@ -832,9 +831,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.home)
         self.new_page = QWidget()
         self.new_page.setObjectName(u"new_page")
-        self.verticalLayout_5 = QVBoxLayout(self.new_page)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6 = QHBoxLayout(self.new_page)
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
         self.frame = QFrame(self.new_page)
         self.frame.setObjectName(u"frame")
@@ -852,32 +849,40 @@ class Ui_MainWindow(object):
 
         self.frame_2 = QFrame(self.new_page)
         self.frame_2.setObjectName(u"frame_2")
-        self.frame_2.setFrameShape(QFrame.Panel)
+        self.frame_2.setFrameShape(QFrame.NoFrame)
         self.frame_2.setFrameShadow(QFrame.Sunken)
         self.frame_2.setLineWidth(3)
         self.frame_2.setMidLineWidth(3)
         self.verticalLayout = QVBoxLayout(self.frame_2)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.btn_open = QPushButton(self.frame_2)
+        self.btn_open.setObjectName(u"btn_open")
+        self.btn_open.setMinimumSize(QSize(100, 30))
+        self.btn_open.setFont(font)
+        self.btn_open.setCursor(QCursor(Qt.PointingHandCursor))
+        self.btn_open.setStyleSheet(u"background-color: rgb(52, 59, 72);")
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_open.setIcon(icon3)
+
+        self.verticalLayout.addWidget(self.btn_open)
+
         self.btn_copy = QPushButton(self.frame_2)
         self.btn_copy.setObjectName(u"btn_copy")
         self.btn_copy.setMinimumSize(QSize(100, 30))
         self.btn_copy.setFont(font)
         self.btn_copy.setCursor(QCursor(Qt.PointingHandCursor))
         self.btn_copy.setStyleSheet(u"background-color: rgb(52, 59, 72);")
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_copy.setIcon(icon3)
+        icon4 = QIcon()
+        icon4.addFile(u"images/icons/cil-link.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_copy.setIcon(icon4)
 
         self.verticalLayout.addWidget(self.btn_copy)
 
 
         self.horizontalLayout_6.addWidget(self.frame_2)
 
-
-        self.verticalLayout_5.addLayout(self.horizontalLayout_6)
-
         self.stackedWidget.addWidget(self.new_page)
-        self.frame_2.raise_()
 
         self.verticalLayout_15.addWidget(self.stackedWidget)
 
@@ -966,8 +971,9 @@ class Ui_MainWindow(object):
         self.closeAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Close", None))
 #endif // QT_CONFIG(tooltip)
         self.closeAppBtn.setText("")
+        self.btn_open.setText(QCoreApplication.translate("MainWindow", u"Open", None))
         self.btn_copy.setText(QCoreApplication.translate("MainWindow", u"Copy", None))
-        self.creditsLabel.setText(QCoreApplication.translate("MainWindow", u"By: Wanderson M. Pimenta", None))
+        self.creditsLabel.setText(QCoreApplication.translate("MainWindow", u"By: Andrew.Yoon", None))
         self.version.setText(QCoreApplication.translate("MainWindow", u"v1.0.3", None))
     # retranslateUi
 

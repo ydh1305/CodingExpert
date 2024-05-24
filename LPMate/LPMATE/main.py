@@ -1,6 +1,6 @@
 # ///////////////////////////////////////////////////////////////
 #
-# BY: WANDERSON M.PIMENTA
+# BY: Andrew.Yoon
 # PROJECT MADE WITH: Qt Designer and PySide6
 # V: 1.0.0
 #
@@ -47,13 +47,16 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         global widgets
         widgets = self.ui
+        
+        # andrew
+        self.file_path = None
 
         # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
         Settings.ENABLE_CUSTOM_TITLE_BAR = True
 
         # APP NAME
-        title = "PyDracula - Modern GUI"
-        description = "PyDracula APP - Theme with colors based on Dracula for Python."
+        title = "LPMate - Modern GUI"
+        description = "LPMate APP - Log Parser & visualization."
 
         # APPLY TEXTS
         self.setWindowTitle(title)
@@ -69,6 +72,7 @@ class MainWindow(QMainWindow):
         widgets.btn_home.clicked.connect(self.buttonClick)
         widgets.btn_new.clicked.connect(self.buttonClick)
         widgets.btn_copy.clicked.connect(self.buttonClick)
+        widgets.btn_open.clicked.connect(self.buttonClick)
 
         # EXTRA LEFT BOX
         def openCloseLeftBox():
@@ -111,13 +115,13 @@ class MainWindow(QMainWindow):
         clipboard = QApplication.clipboard()
         clipboard.setImage(img)
 
-    def draw_graph(self):
-        plt.rc("font", family = "Malgun Gothic")
-        sns.set(font="Malgun Gothic", 
-        rc={"axes.unicode_minus":False}, style='white')
-
+    def draw_graph(self, file_path):
+        if file_path is None:
+            return  # If file_path is None, do not proceed further
+        
         # Read data and create scatterplot
-        df = pd.read_csv("./seoul_apart_02.csv")
+        print(file_path)
+        df = pd.read_csv(file_path)
 
         # Extract the district information from '시군구' column
         df['구'] = df['시군구'].apply(lambda x: x.split()[1])
@@ -129,7 +133,12 @@ class MainWindow(QMainWindow):
 
         # Set up the plot
         plt.rc("font", family="Malgun Gothic")
-        sns.set(font="Malgun Gothic", rc={"axes.unicode_minus": False}, style='white')
+
+        # scatterplot - white
+        #sns.set(font="Malgun Gothic", rc={"axes.unicode_minus": False}, style='white')
+        
+        # lineplot - darkgrid
+        sns.set(font="Malgun Gothic", rc={"axes.unicode_minus": False}, style='darkgrid')  # Set the style here
 
         # Adjust figure size based on widget size
         widget_width, widget_height = self.get_widget_size(widgets.graphicsView)
@@ -141,7 +150,13 @@ class MainWindow(QMainWindow):
 
         for idx, district in enumerate(districts):
             district_df = filtered_df[filtered_df['구'] == district]
-            sns.scatterplot(data=district_df, x='동', y='거래금액(만원)', ax=axes[idx])
+            #sns.scatterplot(data=district_df, x='동', y='거래금액(만원)', hue='구', ax=axes[idx])
+            #sns.scatterplot(data=district_df, x='동', y='거래금액(만원)', ax=axes[idx], color='blue', alpha=0.5)
+            sns.scatterplot(data=district_df, x='동', y='거래금액(만원)', hue='거래금액(만원)', ax=axes[idx], palette='coolwarm').legend(loc='upper left')
+
+            #sns.histplot(data=district_df, x='동', y='거래금액(만원)', ax=axes[idx])
+            
+            #sns.lineplot(data=district_df, x='동', y='거래금액(만원)', ax=axes[idx], errorbar=None, marker='o')
             axes[idx].set_title(f"{district} 거래금액(만원) 추이")
             axes[idx].set_xlabel('동')
             axes[idx].set_ylabel('거래금액(만원)')
@@ -184,13 +199,18 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, btnName) # RESET ANOTHERS BUTTONS SELECTED
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet())) # SELECT MENU
 
-            self.draw_graph()
-
         if btnName == "btn_copy":
-            print("hello")
             self.copy_to_clipboard()
-            
 
+        if btnName == "btn_open":
+            file_path, _ = QFileDialog.getOpenFileName(self, "Open CSV File", "", "CSV Files (*.csv);;All Files (*)")
+            if file_path:
+                try:
+                    self.file_path = file_path
+                    self.draw_graph(file_path)
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"Failed to read file: {str(e)}")
+            
         # PRINT BTN NAME
         print(f'Button "{btnName}" pressed!')
 
@@ -201,8 +221,8 @@ class MainWindow(QMainWindow):
         UIFunctions.resize_grips(self)
 
         # Redraw graph when resizing
-        if widgets.stackedWidget.currentWidget() == widgets.new_page:
-            self.draw_graph()
+        if widgets.stackedWidget.currentWidget() == widgets.new_page and self.file_path:
+            self.draw_graph(self.file_path)
 
     # MOUSE CLICK EVENTS
     def mousePressEvent(self, event):
