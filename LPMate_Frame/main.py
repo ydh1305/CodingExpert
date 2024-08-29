@@ -101,6 +101,20 @@ class MainWindow(QMainWindow):
         widgets.stackedWidget.setCurrentWidget(widgets.home)
         widgets.btn_home.setStyleSheet(UIFunctions.selectMenu(widgets.btn_home.styleSheet()))
 
+        widgets.home.setStyleSheet("""
+            QWidget#home {
+                background-image: url(:/images/images/images/3d-business-young-man-and-woman-looking-at-laptop-together.png);
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        """)
+        widgets.textEdit.setStyleSheet("""
+            QTextEdit {
+                background-color: transparent;
+                border: none;
+            }
+        """)
+
 
     # BUTTONS CLICK
     # Post here your functions for clicked buttons

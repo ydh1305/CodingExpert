@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="images">
+    <file>images/images/3d-casual-life-wind-turbines-in-the-field.png</file>
+    <file>images/images/3d-casual-life-laptop-and-charts-1.png</file>
+    <file>images/images/3d-business-young-man-and-woman-looking-at-laptop-together.png</file>
+    <file>images/images/Samsung_380.png</file>
     <file>images/images/NEW_LPDDR.png</file>
     <file>images/images/Mobile_QA.png</file>
     <file>images/images/QQ.png</file>
