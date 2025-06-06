@@ -1,0 +1,15 @@
+{
+  "name": "lpwatch",
+  "version": "1.0.0",
+  "description": "LPWatch 품질 포털 사이트 - Node.js 기반 웹 애플리케이션",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
